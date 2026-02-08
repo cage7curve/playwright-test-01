@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test --project Chrome --config=playwright.config.ts --ui"
+    "test": "npx playwright test --project Chrome --config=playwright.config.ts"
   },
   "keywords": [],
   "author": "",
