@@ -1,5 +1,5 @@
-import * as path from 'path';
-import { defineConfig, devices } from '@playwright/test';
+import * as path from "path";
+import { defineConfig, devices } from "@playwright/test";
 
 /**
  * Read environment variables from file.
@@ -13,7 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -24,9 +24,9 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-  ['html'],
-  ['junit', { outputFile: 'playwright-report/results.xml' }]
-],
+    ["html"],
+    ["junit", { outputFile: "playwright-report/results.xml" }],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   // use: {
   //   /* Base URL to use in actions like `await page.goto('')`. */
@@ -39,12 +39,16 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'Chrome',
+      name: "Chromium",
       use: {
-        channel: 'chrome',
+        browserName: "chromium",
         viewport: {
-          width: process.env.VIEWPORT_WIDTH ? parseInt(process.env.VIEWPORT_WIDTH) : 1440,
-          height: process.env.VIEWPORT_HEIGHT ? parseInt(process.env.VIEWPORT_HEIGHT) : 849,
+          width: process.env.VIEWPORT_WIDTH
+            ? parseInt(process.env.VIEWPORT_WIDTH)
+            : 1440,
+          height: process.env.VIEWPORT_HEIGHT
+            ? parseInt(process.env.VIEWPORT_HEIGHT)
+            : 849,
         },
       },
     },
@@ -61,18 +65,18 @@ export default defineConfig({
     bypassCSP: true,
 
     // Artifacts
-    trace: 'retain-on-failure',
-    screenshot: 'only-on-failure',
+    trace: "retain-on-failure",
+    screenshot: "only-on-failure",
 
     // Timezone
-    timezoneId: 'Asia/Bangkok',
+    timezoneId: "Asia/Bangkok",
 
     launchOptions: {
       args: [
-        '--allow-file-access-from-files', // allows getUserMedia() to be called from file:// URLs
-        '--use-fake-ui-for-media-stream', // flag avoids grant the camera
-        '--use-fake-device-for-media-stream', // flag allow fake media stream
-        `--use-file-for-fake-video-capture=${path.join(__dirname, '../', 'shared', 'ekyc', 'valid-face.y4m')}`,
+        "--allow-file-access-from-files", // allows getUserMedia() to be called from file:// URLs
+        "--use-fake-ui-for-media-stream", // flag avoids grant the camera
+        "--use-fake-device-for-media-stream", // flag allow fake media stream
+        `--use-file-for-fake-video-capture=${path.join(__dirname, "../", "shared", "ekyc", "valid-face.y4m")}`,
       ],
     },
   },
